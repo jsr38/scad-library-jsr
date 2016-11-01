@@ -17,6 +17,23 @@ along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 */
 // *************************************************************************
 
+
+// TODO: convert to polyhole()
+module screw_hole(radius, height, cs) {
+
+    cs_r = 2.0; // mm
+    cs_h = 2.0; // mm
+
+    union() {
+        if (cs == true) {
+            cylinder(r1 = radius, r2 = radius + cs_r, h = cs_h, center = true, $fn = cylinder_faces);
+        }
+        cylinder(r = radius, h = height, center = true, $fn = cylinder_faces);
+    }
+
+}
+
+
 module screw_holes(pitch_length, pitch_width, pos_vec = "undef", radius, height, cs = false) {
  
     translate([0, 0, height / 2.0]) {
